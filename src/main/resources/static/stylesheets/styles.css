@@ -11,3 +11,25 @@
 li {
     margin-top: 1rem;
 }
+
+.pic {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.desc-pic {
+    max-width: 400px;
+}
+
+.animal-entry {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+
+}
+
+.animal-entry a {
+    color: inherit;
+    text-decoration: none;
+}

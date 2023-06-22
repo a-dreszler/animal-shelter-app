@@ -14,6 +14,11 @@
         </p>
         <section>
             <h2 th:text="${animal.name}">Test animal</h2>
+            <img class="desc-pic"
+                 th:src="@{|/images/${animal.picture.fileName}|}"
+                 th:alt="${animal.picture.alt}"
+                 src="../static/images/kitty-pic.jpg"
+                 alt="Test animal">
             <p th:text="${animal.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius
                 dignissim nunc at blandit. Aenean feugiat viverra eleifend. Morbi sit amet augue sed ipsum commodo lacinia.
                 Nam consequat lacus leo, ac

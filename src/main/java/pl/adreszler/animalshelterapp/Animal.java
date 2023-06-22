@@ -2,37 +2,40 @@ package pl.adreszler.animalshelterapp;
 
 class Animal {
 
-    private Integer id;
-    private String name;
-    private String description;
+    private final Integer id;
+    private final String name;
+    private final String description;
+    private final Picture picture;
+    private static final int SHORT_DESC_LENGTH = 50;
 
-    public Animal(Integer id, String name, String description) {
+    public Animal(Integer id, String name, String description, Picture picture) {
+        this.id = id;
         this.name = name;
         this.description = description;
-        this.id = id;
+        this.picture = picture;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public String getShortDesc() {
+        if (description.length() <= SHORT_DESC_LENGTH) {
+            return description;
+        }
+
+        return String.valueOf(description.toCharArray(), 0, SHORT_DESC_LENGTH - 3) + "...";
     }
 }
