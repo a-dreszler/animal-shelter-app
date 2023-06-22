@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Greenfield Animal Shelter</title>
+        <link rel="stylesheet" th:href="@{/stylesheets/styles.css}" href="../static/stylesheets/styles.css">
+    </head>
+    <body>
+        <header class="logo">
+            <h1>Greenfield Animal Shelter</h1>
+        </header>
+        <section>
+            <h2>Animals looking for home</h2>
+            <ul th:remove="all-but-first">
+                <li th:each="animal: ${animals}" >
+                    <a th:href="@{|/animal?name=${animal.name}|}" href="#" th:text="${animal.name}">Test animal 1</a>
+                </li>
+                <li>
+                    <a href="#">Test animal 2</a>
+                </li>
+                <li>
+                    <a href="#">Test animal 3</a>
+                </li>
+                <li>
+                    <a href="#">Test animal 4</a>
+                </li>
+                <li>
+                    <a href="#">Test animal 5</a>
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>
