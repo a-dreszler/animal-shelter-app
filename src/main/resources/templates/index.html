@@ -11,9 +11,9 @@
         </header>
         <section>
             <h2>Animals looking for home</h2>
-            <ul th:remove="all-but-first">
+            <ul th:if="${animals}" th:remove="all-but-first">
                 <li th:each="animal: ${animals}" >
-                    <a th:href="@{|/animal?name=${animal.name}|}" href="#" th:text="${animal.name}">Test animal 1</a>
+                    <a th:href="@{|/animal?id=${animal.id}|}" href="#" th:text="${animal.name}">Test animal 1</a>
                 </li>
                 <li>
                     <a href="#">Test animal 2</a>
@@ -28,6 +28,7 @@
                     <a href="#">Test animal 5</a>
                 </li>
             </ul>
+            <p th:unless="${animals}">Currently no animals are available</p>
         </section>
     </body>
 </html>
