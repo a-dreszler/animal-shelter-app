@@ -11,13 +11,15 @@ class AnimalRepository {
     private int nextId = 1;
 
     public AnimalRepository() {
-        addAnimal("Lucky", "Test description 1");
-        addAnimal("Billy", "Test description 2");
-        addAnimal("Killer", "Test description 3");
+        addAnimal("Lucky", "Test description 1", "lucky-pic.jpg", "Labrador sitting on a meadow");
+        addAnimal("Billy", "Test description 2 shdsahdhsad sed sad sa dsa d sadsad sa dsa d sadsadsadds " +
+                "sdadsadsa", "billy-pic.jpg", "German shepherd laying on grass");
+        addAnimal("Kitty", "Test description 3", "kitty-pic.jpg", "An orange cat");
     }
 
-    void addAnimal(String name, String description) {
-        animals.put(nextId, new Animal(nextId, name, description));
+    void addAnimal(String name, String description, String pictureFileName, String pictureAlt) {
+        Picture picture = new Picture(pictureFileName, pictureAlt);
+        animals.put(nextId, new Animal(nextId, name, description, picture));
         nextId++;
     }
 

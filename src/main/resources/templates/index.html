@@ -11,23 +11,62 @@
         </header>
         <section>
             <h2>Animals looking for home</h2>
-            <ul th:if="${animals}" th:remove="all-but-first">
-                <li th:each="animal: ${animals}" >
-                    <a th:href="@{|/animal?id=${animal.id}|}" href="#" th:text="${animal.name}">Test animal 1</a>
-                </li>
-                <li>
-                    <a href="#">Test animal 2</a>
-                </li>
-                <li>
-                    <a href="#">Test animal 3</a>
-                </li>
-                <li>
-                    <a href="#">Test animal 4</a>
-                </li>
-                <li>
-                    <a href="#">Test animal 5</a>
-                </li>
-            </ul>
+            <div th:if="${animals}" th:remove="all-but-first">
+                <div th:each="animal: ${animals}" th:object="${animal}" class="animal-entry">
+                    <a th:href="@{|/animal?id=*{id}|}"  href="#">
+                        <img class="pic"
+                             th:src="@{|/images/*{picture.fileName}|}"
+                             th:alt="*{picture.alt}"
+                             alt="Test pic 1"
+                             src="../static/images/lucky-pic.jpg">
+                    </a>
+                    <div>
+                        <h3>
+                            <a th:href="@{|/animal?id=*{id}|}" th:text="*{name}"  href="#">Test animal 1</a>
+                        </h3>
+                        <p>
+                            <a th:href="@{|/animal?id=*{id}|}" th:text="*{getShortDesc()}"  href="#">
+                                Test description in shortened version 1...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="animal-entry">
+                    <a href="#">
+                        <img class="pic"
+                             alt="Test pic 2"
+                             src="../static/images/lucky-pic.jpg">
+                    </a>
+                    <div>
+                        <h3>
+                            <a href="#">Test animal 2</a>
+                        </h3>
+                        <p>
+                            <a href="#">
+                                Test description in shortened version 2...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="animal-entry">
+                    <a href="#">
+                        <img class="pic"
+                             alt="Test pic 3"
+                             src="../static/images/lucky-pic.jpg">
+                    </a>
+                    <div>
+                        <h3>
+                            <a href="#">Test animal 3</a>
+                        </h3>
+                        <p>
+                            <a href="#">
+                                Test description in shortened version 3...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
             <p th:unless="${animals}">Currently no animals are available</p>
         </section>
     </body>
