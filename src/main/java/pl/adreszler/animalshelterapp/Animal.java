@@ -53,8 +53,8 @@ class Animal {
         this.description = description;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(String category) {
+        this.category = Category.fromNameEn(category).orElse(Category.DIFFERENT);
     }
 
     public String getShortDesc() {

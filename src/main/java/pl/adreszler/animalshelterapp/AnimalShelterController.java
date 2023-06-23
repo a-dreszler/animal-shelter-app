@@ -58,7 +58,10 @@ class AnimalShelterController {
 
     @PostMapping("/save-animal")
     String saveAnimal(@RequestParam Animal animal) {
-
+        int id = animalRepository.getNextIdAndIncrement();
+        animal.setId(id);
+        animalRepository.addAnimal(animal);
+        return "redirect:/animal?id=" + id;
     }
 
     @GetMapping("/not-found")

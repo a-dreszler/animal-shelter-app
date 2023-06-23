@@ -29,9 +29,13 @@ class AnimalRepository {
     }
 
     void addAnimal(Animal animal) {
-        animal.setId(nextId);
-        animals.put(nextId, animal);
-        nextId++;
+        animals.put(animal.getId(), animal);
+    }
+
+    int getNextIdAndIncrement() {
+        int nextId = this.nextId;
+        this.nextId++;
+        return nextId;
     }
 
     Animal getAnimalById(Integer id) {

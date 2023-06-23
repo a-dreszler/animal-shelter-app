@@ -14,18 +14,18 @@
         </p>
         <section>
             <h2>Add an animal for adoption</h2>
-            <form action="/save-animal" method="post">
+            <form action="/save-animal" method="post" th:object="${animal}">
                 <label>
                     <span>Name</span>
-                    <input type="text">
+                    <input th:field="*{name}" type="text">
                 </label>
                 <label class="description">
                     <span>Description</span>
-                    <textarea rows="5"></textarea>
+                    <textarea th:field="*{description}" rows="5"></textarea>
                 </label>
                 <label>
                     <span>Category</span>
-                    <select th:remove="all-but-first">
+                    <select th:field="*{category}" th:remove="all-but-first">
                         <option th:each="category: ${categories}"
                                 th:text="${category.categoryNameEn}"
                                 th:value="${category.categoryNameEn}">Test category 1</option>
@@ -35,11 +35,11 @@
                 </label>
                 <label>
                     <span>Photo link</span>
-                    <input type="url">
+                    <input th:field="*{picture.fileName}" type="url">
                 </label>
                 <label>
                     <span>Photo alternative text</span>
-                    <input type="text">
+                    <input th:field="*{picture.alt}" type="text">
                 </label>
                 <button type="submit">Add</button>
             </form>
