@@ -1,6 +1,5 @@
 package pl.adreszler.animalshelterapp;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 enum Category {

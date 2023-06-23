@@ -48,6 +48,12 @@ class AnimalShelterController {
         return "animal";
     }
 
+    @GetMapping("/add-animal")
+    String addAnimal(Model model) {
+        model.addAttribute("categories", Category.values());
+        return "add-animal";
+    }
+
     @GetMapping("/not-found")
     String notFound() {
         return "error";

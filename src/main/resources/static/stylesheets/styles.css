@@ -2,6 +2,35 @@
     font-family: sans-serif;
 }
 
+form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    text-align: start;
+    font-size: 0;
+}
+
+.description {
+    display: flex;
+    align-items: start;
+}
+
+
+label > span {
+    font-size: 1rem;
+    display: inline-block;
+    width: 8rem;
+    margin: 0.5rem 0;
+}
+
+input, textarea, select {
+    width: 15rem;
+}
+
 .logo {
     background-color: burlywood;
     text-align: center;
@@ -38,4 +67,10 @@ nav li {
 ul {
     display: inline;
     padding-left: 0;
+}
+
+button {
+    margin-top: 0.5rem;
+    width: 15%;
+    align-self: end;
 }
