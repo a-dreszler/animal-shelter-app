@@ -14,7 +14,7 @@
         </p>
         <section>
             <h2>Add an animal for adoption</h2>
-            <form action="/save-animal" method="post" th:object="${animal}">
+            <form method="post" action="/save-animal"  th:object="${animal}">
                 <label>
                     <span>Name</span>
                     <input th:field="*{name}" type="text">
@@ -35,7 +35,7 @@
                 </label>
                 <label>
                     <span>Photo link</span>
-                    <input th:field="*{picture.fileName}" type="url">
+                    <input th:field="*{picture.filePath}" type="url">
                 </label>
                 <label>
                     <span>Photo alternative text</span>

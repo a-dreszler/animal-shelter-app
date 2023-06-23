@@ -31,7 +31,7 @@
                 <div th:each="animal: ${animals}" th:object="${animal}" class="animal-entry">
                     <a th:href="@{|/animal?id=*{id}|}"  href="#">
                         <img class="pic"
-                             th:src="@{|/images/*{picture.fileName}|}"
+                             th:src="@{*{picture.filePath}}"
                              th:alt="*{picture.alt}"
                              alt="Test pic 1"
                              src="../static/images/lucky-pic.jpg">

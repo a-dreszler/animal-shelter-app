@@ -15,7 +15,7 @@
         <section>
             <h2 th:text="${animal.name}">Test animal</h2>
             <img class="desc-pic"
-                 th:src="@{|/images/${animal.picture.fileName}|}"
+                 th:src="@{${animal.picture.filePath}}"
                  th:alt="${animal.picture.alt}"
                  src="../static/images/kitty-pic.jpg"
                  alt="Test animal">

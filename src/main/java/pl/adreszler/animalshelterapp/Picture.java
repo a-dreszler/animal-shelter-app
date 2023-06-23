@@ -2,27 +2,27 @@ package pl.adreszler.animalshelterapp;
 
 class Picture {
 
-    private String fileName;
+    private String filePath;
     private String alt;
 
-    public Picture(String fileName, String alt) {
-        this.fileName = fileName;
+    public Picture(String filePath, String alt) {
+        this.filePath = filePath;
         this.alt = alt;
     }
 
     public Picture() {
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getAlt() {
         return alt;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public void setAlt(String alt) {
