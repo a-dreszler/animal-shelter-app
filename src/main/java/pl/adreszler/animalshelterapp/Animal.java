@@ -6,13 +6,15 @@ class Animal {
     private final String name;
     private final String description;
     private final Picture picture;
+    private final Category category;
     private static final int SHORT_DESC_LENGTH = 50;
 
-    public Animal(Integer id, String name, String description, Picture picture) {
+    public Animal(Integer id, String name, String description, Picture picture, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;
+        this.category = category;
     }
 
     public Integer getId() {
@@ -29,6 +31,10 @@ class Animal {
 
     public Picture getPicture() {
         return picture;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     public String getShortDesc() {

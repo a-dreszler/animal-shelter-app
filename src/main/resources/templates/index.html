@@ -9,8 +9,23 @@
         <header class="logo">
             <h1>Greenfield Animal Shelter</h1>
         </header>
+        <nav>
+            Species
+            <ul>
+                <li>
+                    <a th:href="@{/}"
+                       href="#">All</a>
+                </li>
+                <li th:each="category: ${categories}">
+                    <a th:text="${category.categoryNameEn}"
+                       th:href="@{|/?category=${category.categoryNameEn}|}"
+                       href="#">Test category</a>
+                </li>
+            </ul>
+        </nav>
         <section>
-            <h2>Animals looking for home</h2>
+            <h2 th:unless="${category}">Animals looking for home</h2>
+            <h2 th:if="${category}" th:text="|${category.headerEn} looking for home|">Test category looking for home</h2>
             <div th:if="${animals}" th:remove="all-but-first">
                 <div th:each="animal: ${animals}" th:object="${animal}" class="animal-entry">
                     <a th:href="@{|/animal?id=*{id}|}"  href="#">
@@ -67,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <p th:unless="${animals}">Currently no animals are available</p>
+            <p th:unless="${animals ne null and !animals.isEmpty()}">Currently no animals of selected type are available</p>
         </section>
     </body>
 </html>
