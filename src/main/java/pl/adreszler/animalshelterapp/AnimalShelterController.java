@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 class AnimalShelterController {
 
@@ -15,10 +17,17 @@ class AnimalShelterController {
     }
 
     @GetMapping("/")
-    String home(Model model) {
+    String home(@RequestParam(required = false) String category,
+                Model model) {
         model.addAttribute("categories", Category.values());
         if (!animalRepository.findAll().isEmpty()) {
-            model.addAttribute("animals", animalRepository.findAll());
+            if (category != null) {
+                Optional<Category> categoryOptional = Category.fromNameEn(category);
+                categoryOptional.ifPresent(cat -> model.addAttribute("animals",
+                        animalRepository.findByCategory(cat)));
+            } else {
+                model.addAttribute("animals", animalRepository.findAll());
+            }
         }
 
         return "index";
