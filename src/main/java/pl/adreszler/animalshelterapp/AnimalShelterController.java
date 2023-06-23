@@ -16,6 +16,7 @@ class AnimalShelterController {
 
     @GetMapping("/")
     String home(Model model) {
+        model.addAttribute("categories", Category.values());
         if (!animalRepository.findAll().isEmpty()) {
             model.addAttribute("animals", animalRepository.findAll());
         }

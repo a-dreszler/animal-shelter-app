@@ -1,7 +1,6 @@
 package pl.adreszler.animalshelterapp;
 
 enum Category {
-    ALL("All"),
     CATS("Cats"),
     DOGS("Dogs"),
     DIFFERENT("Different");
@@ -10,5 +9,9 @@ enum Category {
 
     Category(String categoryNameEn) {
         this.categoryNameEn = categoryNameEn;
+    }
+
+    public String getCategoryNameEn() {
+        return categoryNameEn;
     }
 }

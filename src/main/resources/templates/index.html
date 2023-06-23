@@ -9,6 +9,20 @@
         <header class="logo">
             <h1>Greenfield Animal Shelter</h1>
         </header>
+        <nav>
+            Species
+            <ul>
+                <li>
+                    <a th:href="@{/}"
+                       href="#">All</a>
+                </li>
+                <li th:each="category: ${categories}">
+                    <a th:text="${category.categoryNameEn}"
+                       th:href="@{|/?name=${category.categoryNameEn}|}"
+                       href="#">Test category</a>
+                </li>
+            </ul>
+        </nav>
         <section>
             <h2>Animals looking for home</h2>
             <div th:if="${animals}" th:remove="all-but-first">
