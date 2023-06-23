@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <p th:unless="${animals}">Currently no animals are available</p>
+            <p th:unless="${animals ne null and !animals.isEmpty()}">Currently no animals of selected type are available</p>
         </section>
     </body>
 </html>

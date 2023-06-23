@@ -20,14 +20,18 @@ class AnimalShelterController {
     String home(@RequestParam(required = false) String category,
                 Model model) {
         model.addAttribute("categories", Category.values());
-        if (!animalRepository.findAll().isEmpty()) {
-            if (category != null) {
-                Optional<Category> categoryOptional = Category.fromNameEn(category);
-                categoryOptional.ifPresent(cat -> model.addAttribute("animals",
-                        animalRepository.findByCategory(cat)));
-            } else {
-                model.addAttribute("animals", animalRepository.findAll());
-            }
+        if (animalRepository.findAll().isEmpty()) {
+            return "index";
+        }
+
+        if (category != null) {
+            Optional<Category> categoryOptional = Category.fromNameEn(category);
+            categoryOptional.ifPresent(cat -> {
+                model.addAttribute("animals", animalRepository.findByCategory(cat));
+                model.addAttribute("category", cat);
+            });
+        } else {
+            model.addAttribute("animals", animalRepository.findAll());
         }
 
         return "index";
