@@ -28,6 +28,12 @@ class AnimalRepository {
         nextId++;
     }
 
+    void addAnimal(Animal animal) {
+        animal.setId(nextId);
+        animals.put(nextId, animal);
+        nextId++;
+    }
+
     Animal getAnimalById(Integer id) {
         return animals.get(id);
     }

@@ -2,12 +2,15 @@ package pl.adreszler.animalshelterapp;
 
 class Picture {
 
-    private final String fileName;
-    private final String alt;
+    private String fileName;
+    private String alt;
 
     public Picture(String fileName, String alt) {
         this.fileName = fileName;
         this.alt = alt;
+    }
+
+    public Picture() {
     }
 
     public String getFileName() {
@@ -16,5 +19,13 @@ class Picture {
 
     public String getAlt() {
         return alt;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setAlt(String alt) {
+        this.alt = alt;
     }
 }

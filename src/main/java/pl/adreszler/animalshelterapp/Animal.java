@@ -2,11 +2,11 @@ package pl.adreszler.animalshelterapp;
 
 class Animal {
 
-    private final Integer id;
-    private final String name;
-    private final String description;
-    private final Picture picture;
-    private final Category category;
+    private Integer id;
+    private String name;
+    private String description;
+    private Picture picture;
+    private Category category;
     private static final int SHORT_DESC_LENGTH = 50;
 
     public Animal(Integer id, String name, String description, Picture picture, Category category) {
@@ -15,6 +15,10 @@ class Animal {
         this.description = description;
         this.picture = picture;
         this.category = category;
+    }
+
+    public Animal() {
+        this.picture = new Picture();
     }
 
     public Integer getId() {
@@ -35,6 +39,22 @@ class Animal {
 
     public Category getCategory() {
         return category;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getShortDesc() {
