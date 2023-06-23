@@ -3,6 +3,7 @@ package pl.adreszler.animalshelterapp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
@@ -46,6 +47,19 @@ class AnimalShelterController {
         model.addAttribute("animal", animal);
 
         return "animal";
+    }
+
+    @GetMapping("/add-animal")
+    String addAnimal(Model model) {
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("animal", new Animal());
+        return "add-animal";
+    }
+
+    @PostMapping("/save-animal")
+    String saveAnimal(Animal animal) {
+        int id = animalRepository.addAnimalAndReturnId(animal);
+        return "redirect:/animal?id=" + id;
     }
 
     @GetMapping("/not-found")
