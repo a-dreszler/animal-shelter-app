@@ -13,8 +13,9 @@
             <a th:href="@{/}" href="#">Back to home page</a>
         </p>
         <section>
-            <h2>Edit animal</h2>
-            <form method="post" action="/edit"  th:object="${animal}">
+            <h2 th:text="${mode eq 'edit' ? 'Edit' : 'Add'}">Add/edit animal</h2>
+            <form method="post" th:action="${mode eq 'edit' ? '/edit' : '/add'}"  th:object="${animal}">
+                <input type="hidden" th:field="*{id}" />
                 <label>
                     <span>Name</span>
                     <input th:field="*{name}" type="text">
@@ -36,13 +37,13 @@
                 </label>
                 <label>
                     <span>Photo link</span>
-                    <input th:field="*{picture.filePath}" type="url">
+                    <input th:field="*{picture.filePath}" type="text">
                 </label>
                 <label>
                     <span>Photo alternative text</span>
                     <input th:field="*{picture.alt}" type="text">
                 </label>
-                <button type="submit">Confirm</button>
+                <button type="submit" th:text="${mode eq 'edit' ? 'Edit' : 'Add'}">Test button</button>
             </form>
         </section>
     </body>
