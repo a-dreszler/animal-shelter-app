@@ -53,13 +53,35 @@ class AnimalShelterController {
     String addAnimal(Model model) {
         model.addAttribute("categories", Category.values());
         model.addAttribute("animal", new Animal());
-        return "add-animal";
+        model.addAttribute("mode", "add");
+        return "edit-or-add-animal";
     }
 
     @PostMapping("/save-animal")
     String saveAnimal(Animal animal) {
         int id = animalRepository.addAnimalAndReturnId(animal);
         return "redirect:/animal?id=" + id;
+    }
+
+    @GetMapping("/edit")
+    String editAnimal(@RequestParam Integer id, Model model) {
+        Animal animal = animalRepository.getAnimalById(id);
+
+        if (animal == null) {
+            return "redirect:/not-found";
+        }
+
+        model.addAttribute("mode", "edit");
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("animal", animal);
+
+        return "edit-or-add-animal";
+    }
+
+    @PostMapping("/edit")
+    String saveEditedAnimal(Animal animal) {
+        animalRepository.addEditedAnimal(animal);
+        return "redirect:/animal?id=" + animal.getId();
     }
 
     @GetMapping("/not-found")
