@@ -22,10 +22,14 @@ class AnimalRepository {
                 Category.DIFFERENT);
     }
 
-    void addTestAnimal(String name, String description, String pictureFileName, String pictureAlt, Category category) {
+    private void addTestAnimal(String name, String description, String pictureFileName, String pictureAlt, Category category) {
         Picture picture = new Picture(pictureFileName, pictureAlt);
         int id = getNextIdAndIncrement();
         animals.put(id, new Animal(id, name, description, picture, category));
+    }
+
+    void addEditedAnimal(Animal animal) {
+        animals.put(animal.getId(), animal);
     }
 
     int addAnimalAndReturnId(Animal animal) {
