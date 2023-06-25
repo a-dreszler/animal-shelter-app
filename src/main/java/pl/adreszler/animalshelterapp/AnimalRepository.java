@@ -59,4 +59,11 @@ class AnimalRepository {
                 .filter(animal -> animal.getCategory() == category)
                 .toList();
     }
+
+    List<Animal> findByName(String name) {
+        String lowercaseName = name.toLowerCase();
+        return animals.values().stream()
+                .filter(animal -> animal.getName().toLowerCase().contains(lowercaseName))
+                .toList();
+    }
 }

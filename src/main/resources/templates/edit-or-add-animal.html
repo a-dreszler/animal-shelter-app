@@ -14,15 +14,15 @@
         </p>
         <section>
             <h2 th:text="${mode eq 'edit' ? 'Edit' : 'Add'} + ' animal'">Add/edit animal</h2>
-            <form method="post" th:action="${mode eq 'edit' ? '/edit' : '/add'}"  th:object="${animal}">
+            <form method="post" th:action="${mode eq 'edit' ? '/edit' : '/add-animal'}"  th:object="${animal}">
                 <input type="hidden" th:field="*{id}" />
                 <label>
                     <span>Name</span>
-                    <input th:field="*{name}" type="text">
+                    <input th:field="*{name}" type="text" required>
                 </label>
                 <label class="description">
                     <span>Description</span>
-                    <textarea th:field="*{description}" rows="5"></textarea>
+                    <textarea th:field="*{description}" rows="5" required></textarea>
                 </label>
                 <label>
                     <span>Category</span>
@@ -41,7 +41,7 @@
                 </label>
                 <label>
                     <span>Photo alternative text</span>
-                    <input th:field="*{picture.alt}" type="text">
+                    <input th:field="*{picture.alt}" type="text" required>
                 </label>
                 <button type="submit" th:text="${mode eq 'edit' ? 'Edit' : 'Add'}">Test button</button>
             </form>

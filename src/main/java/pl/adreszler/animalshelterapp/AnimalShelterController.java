@@ -58,7 +58,7 @@ class AnimalShelterController {
         return "edit-or-add-animal";
     }
 
-    @PostMapping("/save-animal")
+    @PostMapping("/add-animal")
     String saveAnimal(Animal animal) {
         int id = animalRepository.addAnimalAndReturnId(animal);
         return "redirect:/animal?id=" + id;
@@ -82,6 +82,20 @@ class AnimalShelterController {
     String saveEditedAnimal(Animal animal) {
         animalRepository.addEditedAnimal(animal);
         return "redirect:/animal?id=" + animal.getId();
+    }
+
+    @GetMapping("/search")
+    String search() {
+        return "search";
+    }
+
+    @PostMapping("/search")
+    String search(@RequestParam String query,
+                  Model model) {
+        model.addAttribute("animals", animalRepository.findByName(query));
+        model.addAttribute("query", query);
+
+        return "search";
     }
 
     @GetMapping("/not-found")
