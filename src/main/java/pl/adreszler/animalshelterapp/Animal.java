@@ -54,7 +54,7 @@ class Animal {
     }
 
     public void setCategory(String category) {
-        this.category = Category.fromNameEn(category).orElse(Category.DIFFERENT);
+        this.category = Category.valueOf(category);
     }
 
     public String getShortDesc() {

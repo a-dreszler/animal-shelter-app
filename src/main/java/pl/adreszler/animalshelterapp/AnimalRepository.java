@@ -2,8 +2,9 @@ package pl.adreszler.animalshelterapp;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 class AnimalRepository {
@@ -49,13 +50,13 @@ class AnimalRepository {
         return animals.get(id);
     }
 
-    Collection<Animal> findAll() {
-        return animals.values();
+    List<Animal> findAll() {
+        return animals.values().stream().toList();
     }
 
     List<Animal> findByCategory(Category category) {
         return animals.values().stream()
                 .filter(animal -> animal.getCategory() == category)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
