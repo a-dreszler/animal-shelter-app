@@ -14,7 +14,7 @@
         </p>
         <section>
             <h2>Edit animal</h2>
-            <form method="post" action="/edit-animal"  th:object="${animal}">
+            <form method="post" action="/edit"  th:object="${animal}">
                 <label>
                     <span>Name</span>
                     <input th:field="*{name}" type="text">
@@ -25,10 +25,11 @@
                 </label>
                 <label>
                     <span>Category</span>
-                    <select th:field="*{category}" th:remove="all-but-first">
+                    <select name="category" th:remove="all-but-first">
                         <option th:each="category: ${categories}"
                                 th:text="${category.categoryNameEn}"
-                                th:value="${category.categoryNameEn}">Test category 1</option>
+                                th:value="${category.categoryNameEn}"
+                                th:selected="${animal.category == category}">Test category 1</option>
                         <option>Test category 2</option>
                         <option>Test category 3</option>
                     </select>

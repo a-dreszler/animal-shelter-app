@@ -62,6 +62,20 @@ class AnimalShelterController {
         return "redirect:/animal?id=" + id;
     }
 
+    @GetMapping("/edit")
+    String editAnimal(@RequestParam Integer id, Model model) {
+        Animal animal = animalRepository.getAnimalById(id);
+
+        if (animal == null) {
+            return "redirect:/not-found";
+        }
+
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("animal", animal);
+
+        return "edit-animal";
+    }
+
     @GetMapping("/not-found")
     String notFound() {
         return "error";
