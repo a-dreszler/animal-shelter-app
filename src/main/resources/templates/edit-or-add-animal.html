@@ -13,7 +13,7 @@
             <a th:href="@{/}" href="#">Back to home page</a>
         </p>
         <section>
-            <h2 th:text="${mode eq 'edit' ? 'Edit' : 'Add'}">Add/edit animal</h2>
+            <h2 th:text="${mode eq 'edit' ? 'Edit' : 'Add'} + ' animal'">Add/edit animal</h2>
             <form method="post" th:action="${mode eq 'edit' ? '/edit' : '/add'}"  th:object="${animal}">
                 <input type="hidden" th:field="*{id}" />
                 <label>
@@ -27,9 +27,9 @@
                 <label>
                     <span>Category</span>
                     <select name="category" th:remove="all-but-first">
-                        <option th:each="category: ${categories}"
-                                th:text="${category.categoryNameEn}"
-                                th:value="${category.categoryNameEn}"
+                        <option th:each="category: ${T(pl.adreszler.animalshelterapp.Category).values()}"
+                                th:text="${category.nameEn}"
+                                th:value="${category}"
                                 th:selected="${animal.category == category}">Test category 1</option>
                         <option>Test category 2</option>
                         <option>Test category 3</option>

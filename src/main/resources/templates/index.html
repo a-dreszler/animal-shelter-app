@@ -17,9 +17,9 @@
                     <a th:href="@{/}"
                        href="#">All</a>
                 </li>
-                <li th:each="category: ${categories}">
-                    <a th:text="${category.categoryNameEn}"
-                       th:href="@{|/?category=${category.categoryNameEn}|}"
+                <li th:each="category: ${T(pl.adreszler.animalshelterapp.Category).values()}">
+                    <a th:text="${category.nameEn}"
+                       th:href="@{|/?category=${category}|}"
                        href="#">Test category</a>
                 </li>
             </ul>
@@ -27,7 +27,10 @@
         <section>
             <h2 th:unless="${category}">Animals looking for home</h2>
             <h2 th:if="${category}" th:text="|${category.headerEn} looking for home|">Test category looking for home</h2>
-            <div th:if="${animals}" th:remove="all-but-first">
+            <p><a th:href="@{'/?' + ${catParam ne null ? 'category=' + catParam + '&' : ''} + 'sort=true'}"
+                  th:with="catParam=${param.category}"
+                  href="#">Sort by name</a></p>
+            <div th:if="${!animals.isEmpty()}" th:remove="all-but-first">
                 <div th:each="animal: ${animals}" th:object="${animal}" class="animal-entry">
                     <a th:href="@{|/animal?id=*{id}|}"  href="#">
                         <img class="pic"

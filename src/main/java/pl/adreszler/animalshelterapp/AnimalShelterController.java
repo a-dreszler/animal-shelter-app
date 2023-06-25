@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Optional;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 class AnimalShelterController {
@@ -18,22 +19,23 @@ class AnimalShelterController {
     }
 
     @GetMapping("/")
-    String home(@RequestParam(required = false) String category,
+    String home(@RequestParam(required = false) Category category,
+                @RequestParam(required = false) boolean sort,
                 Model model) {
-        model.addAttribute("categories", Category.values());
-        if (animalRepository.findAll().isEmpty()) {
-            return "index";
+        List<Animal> animals;
+        if (category != null) {
+            model.addAttribute("category", category);
+            animals = animalRepository.findByCategory(category);
+        } else {
+            animals = animalRepository.findAll();
         }
 
-        if (category != null) {
-            Optional<Category> categoryOptional = Category.fromNameEn(category);
-            categoryOptional.ifPresent(cat -> {
-                model.addAttribute("animals", animalRepository.findByCategory(cat));
-                model.addAttribute("category", cat);
-            });
-        } else {
-            model.addAttribute("animals", animalRepository.findAll());
+        if (sort) {
+            animals = animals.stream()
+                    .sorted(Comparator.comparing(Animal::getName))
+                    .toList();
         }
+        model.addAttribute("animals", animals);
 
         return "index";
     }
@@ -51,7 +53,6 @@ class AnimalShelterController {
 
     @GetMapping("/add-animal")
     String addAnimal(Model model) {
-        model.addAttribute("categories", Category.values());
         model.addAttribute("animal", new Animal());
         model.addAttribute("mode", "add");
         return "edit-or-add-animal";
@@ -72,7 +73,6 @@ class AnimalShelterController {
         }
 
         model.addAttribute("mode", "edit");
-        model.addAttribute("categories", Category.values());
         model.addAttribute("animal", animal);
 
         return "edit-or-add-animal";
