@@ -27,6 +27,8 @@
         <section>
             <h2 th:unless="${category}">Animals looking for home</h2>
             <h2 th:if="${category}" th:text="|${category.headerEn} looking for home|">Test category looking for home</h2>
+            <p><a th:href="@{/sort}"
+                  href="#">Sort by name</a></p>
             <div th:if="${animals}" th:remove="all-but-first">
                 <div th:each="animal: ${animals}" th:object="${animal}" class="animal-entry">
                     <a th:href="@{|/animal?id=*{id}|}"  href="#">
