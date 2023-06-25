@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Greenfield Animal Shelter</title>
+        <link rel="stylesheet" th:href="@{/stylesheets/styles.css}" href="../static/stylesheets/styles.css">
+    </head>
+    <body>
+        <header class="logo">
+            <h1>Greenfield Animal Shelter</h1>
+        </header>
+        <p>
+            <a th:href="@{/}" href="#">Back to home page</a>
+        </p>
+        <section>
+            <h2>Find an animal by it's name</h2>
+            <form method="post" action="/search">
+                <label>
+                    <span>Enter animal's name</span>
+                    <input type="text" placeholder="e.g. Lucky" name="query" required>
+                </label>
+                <button type="submit">
+                    Search
+                </button>
+            </form>
+        </section>
+        <section th:if="${animals ne null and !animals.isEmpty()}">
+            <h3>Search results:</h3>
+            <div th:remove="all-but-first">
+                <div th:each="animal: ${animals}" th:object="${animal}" class="animal-entry">
+                    <a th:href="@{|/animal?id=*{id}|}"  href="#">
+                        <img class="pic"
+                             th:src="@{*{picture.filePath}}"
+                             th:alt="*{picture.alt}"
+                             alt="Test pic 1"
+                             src="../static/images/lucky-pic.jpg">
+                    </a>
+                    <div>
+                        <h3>
+                            <a th:href="@{|/animal?id=*{id}|}" th:text="*{name}"  href="#">Test animal 1</a>
+                        </h3>
+                        <p>
+                            <a th:href="@{|/animal?id=*{id}|}" th:text="*{getShortDesc()}"  href="#">
+                                Test description in shortened version 1...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <p th:if="${animals ne null and animals.isEmpty()}"
+           th:text="'Could not find any animals for search query: ' + ${query}">
+            Could not find any animals for search query: Test query
+        </p>
+    </body>
+</html>
